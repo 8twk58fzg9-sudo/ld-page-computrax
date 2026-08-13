@@ -351,6 +351,89 @@ a.contact-card:hover { border-color: #9fcdff; transform: translateY(-2px); }
   color: var(--ink-soft);
 }
 
+/* ---------- Checklist ---------- */
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 780px;
+}
+
+.checklist li {
+  position: relative;
+  padding: 14px 18px 14px 52px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--ink);
+  font-size: .97rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow);
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  margin-top: -9px;
+  width: 18px;
+  height: 18px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322c55e' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12.5 l5.5 5.5 L20 6'/></svg>") no-repeat center / contain;
+}
+
+.note {
+  margin-top: 22px;
+  font-size: .92rem;
+  max-width: 680px;
+}
+
+/* ---------- Split (firmy a školy) ---------- */
+
+.split {
+  display: grid;
+  gap: 26px;
+  margin-top: 30px;
+}
+
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
+}
+
+.split-text p { margin-bottom: 1.1em; }
+.split-list { margin: 0; }
+
+/* ---------- Sticky CTA (mobil) ---------- */
+
+.sticky-cta { display: none; }
+
+@media (max-width: 859px) {
+  .sticky-cta {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-top: 1px solid var(--line);
+  }
+
+  .sticky-cta .btn {
+    width: 100%;
+    padding: 15px 22px;
+    font-size: 1.02rem;
+  }
+
+  /* aby lišta neprekrývala koniec pätičky */
+  body { padding-bottom: 104px; }
+}
+
 /* ---------- Footer ---------- */
 
 .footer {

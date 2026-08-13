@@ -22,9 +22,10 @@
     <nav class="nav">
       <a href="#preco">Prečo my</a>
       <a href="#o-nas">O nás</a>
+      <a href="#firmy">Firmy a školy</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-    <a class="btn btn-primary btn-sm js-shop" href="#">Pozrieť počítače</a>
+    <a class="btn btn-primary btn-sm js-shop" data-utm="hlavicka" href="#">Pozrieť počítače</a>
   </div>
 </header>
 
@@ -41,7 +42,7 @@
         Dostanete stroj so zárukou 24 mesiacov a faktúrou.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary btn-lg js-shop" href="#">Pozrieť počítače</a>
+        <a class="btn btn-primary btn-lg js-shop" data-utm="hero" href="#">Pozrieť počítače</a>
         <a class="btn btn-ghost btn-lg" href="#o-nas">Ako to funguje</a>
       </div>
       <ul class="trust-strip">
@@ -124,6 +125,54 @@
     </div>
   </section>
 
+  <!-- KONTROLA -->
+  <section id="kontrola" class="section">
+    <div class="wrap">
+      <p class="eyebrow">Kontrola kvality</p>
+      <h2>Čo kontrolujeme pred odoslaním</h2>
+      <p class="section-lede">Každý počítač prejde kontrolou skôr, než opustí sklad. Overujeme:</p>
+      <ul class="checklist">
+        <li>Komponenty — procesor, RAM, disk, grafiku, porty a stabilitu systému</li>
+        <li>Teploty a stabilitu pri zaťažení</li>
+        <li>Softvér — Windows, ovládače, aktualizácie a pripravenosť systému</li>
+        <li>Fyzický stav a čistotu</li>
+        <li>Skladovú dostupnosť konkrétneho kusu</li>
+      </ul>
+      <p class="note">
+        Rozsah kontroly závisí od typu a stavu počítača. Pri každom produkte
+        uvádzame aj poznámku ku konkrétnemu kusu — vrátane toho, kde má
+        kozmetické stopy.
+      </p>
+    </div>
+  </section>
+
+  <!-- FIRMY A ŠKOLY -->
+  <section id="firmy" class="section section-alt">
+    <div class="wrap">
+      <p class="eyebrow">Firmy a školy</p>
+      <h2>Potrebujete viac kusov naraz?</h2>
+      <div class="split">
+        <div class="split-text">
+          <p>
+            Pri väčších požiadavkách pripravíme dopyt podľa počtu zariadení, spôsobu
+            použitia, programov a rozpočtu. Podobné konfigurácie závisia od aktuálneho
+            skladu, preto väčšie dopyty potvrdzujeme individuálne.
+          </p>
+          <p>
+            Pre firemných zákazníkov vystavujeme faktúru.
+          </p>
+          <a class="btn btn-primary" href="mailto:info@nanoera.sk?subject=Dopyt%20pre%20firmu%20alebo%20%C5%A1kolu">Napísať dopyt</a>
+        </div>
+        <ul class="checklist split-list">
+          <li>Odporúčanie počítačov podľa použitia a rozpočtu</li>
+          <li>Základné nastavenie a kontrola pred odovzdaním</li>
+          <li>Doplnenie RAM alebo SSD pri kompatibilných kusoch</li>
+          <li>Záruka a podpora k zakúpeným počítačom</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA BAND -->
   <section class="band">
     <div class="wrap band-inner">
@@ -131,7 +180,7 @@
         <h2>Pozrite si, čo máme práve na sklade</h2>
         <p>Herné, kancelárske aj počítače pre firmy a školy — s parametrami a stavom pri každom kuse.</p>
       </div>
-      <a class="btn btn-white btn-lg js-shop" href="#">Pozrieť počítače</a>
+      <a class="btn btn-white btn-lg js-shop" data-utm="cta-pas" href="#">Pozrieť počítače</a>
     </div>
   </section>
 
@@ -178,11 +227,15 @@
       a reklamačný poriadok nájdete v e-shope.
     </p>
     <p class="footer-links">
-      <a class="js-shop" href="#">Prejsť do e-shopu a na obchodné podmienky</a>
+      <a class="js-shop" data-utm="paticka" href="#">Prejsť do e-shopu a na obchodné podmienky</a>
     </p>
     <p class="copy">© 2026 NANOERA s.r.o.</p>
   </div>
 </footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-primary js-shop" data-utm="sticky-mobil" href="#">Pozrieť počítače</a>
+</div>
 
 <script src="app.js"></script>
 </body>
