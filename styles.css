@@ -161,7 +161,116 @@ p { margin: 0 0 1.1em; }
   text-align: center;
 }
 
-.hero-inner { position: relative; z-index: 2; }
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 34px;
+  align-items: center;
+}
+
+@media (min-width: 940px) {
+  .hero { text-align: left; }
+  .hero-inner { grid-template-columns: 1.05fr 1fr; gap: 48px; }
+  .hero .lede { margin-left: 0; margin-right: 0; }
+  .hero .cta-row { justify-content: flex-start; }
+}
+
+.hero-visual { display: flex; justify-content: center; }
+
+.hero-visual .scan {
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+}
+
+/* na mobile hero stiahneme, aby bola animácia hneď na dosah */
+@media (max-width: 939px) {
+  .hero { padding-top: 40px; }
+  .pill { margin-bottom: 16px; }
+  .hero .lede { margin-bottom: 22px; }
+  .hero .cta-row { margin-bottom: 26px; }
+  .hero-inner { gap: 22px; }
+  .hero-visual .scan { max-width: 320px; }
+}
+
+/* ---------- Animácia skenu ---------- */
+
+.scan-beam {
+  animation: scan-move 6s cubic-bezier(.45, .05, .4, 1) infinite;
+}
+
+@keyframes scan-move {
+  0%   { transform: translateY(56px); opacity: 0; }
+  4%   { opacity: 1; }
+  55%  { transform: translateY(348px); opacity: 1; }
+  66%  { transform: translateY(348px); opacity: 0; }
+  100% { transform: translateY(56px); opacity: 0; }
+}
+
+.scan-item .dot {
+  fill: #fff;
+  stroke: #d7e3f2;
+  stroke-width: 2;
+}
+
+.scan-item .tick {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+
+.scan-item text { opacity: .38; transition: opacity .2s ease; }
+
+/* stav „overené" — nabehne s oneskorením podľa --d */
+.scan-item .dot,
+.scan-item .tick,
+.scan-item text {
+  animation-duration: 6s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-delay: var(--d);
+}
+
+.scan-item .dot  { animation-name: scan-dot; transform-box: fill-box; transform-origin: center; }
+.scan-item .tick { animation-name: scan-tick; }
+.scan-item text  { animation-name: scan-text; }
+
+@keyframes scan-dot {
+  0%, 1%   { fill: #fff; stroke: #d7e3f2; transform: scale(1); }
+  4%       { fill: #22c55e; stroke: #22c55e; transform: scale(1.22); }
+  8%       { transform: scale(1); }
+  72%      { fill: #22c55e; stroke: #22c55e; }
+  84%, 100% { fill: #fff; stroke: #d7e3f2; }
+}
+
+@keyframes scan-tick {
+  0%, 2%    { opacity: 0; }
+  6%, 72%   { opacity: 1; }
+  84%, 100% { opacity: 0; }
+}
+
+@keyframes scan-text {
+  0%, 2%    { opacity: .38; }
+  6%, 72%   { opacity: 1; }
+  84%, 100% { opacity: .38; }
+}
+
+/* Kto má v systéme vypnuté animácie, uvidí hotový, statický výsledok. */
+@media (prefers-reduced-motion: reduce) {
+  .scan-beam { display: none; }
+
+  .scan-item .dot,
+  .scan-item .tick,
+  .scan-item text { animation: none; }
+
+  .scan-item .dot  { fill: #22c55e; stroke: #22c55e; }
+  .scan-item .tick { opacity: 1; }
+  .scan-item text  { opacity: 1; }
+}
 
 .hero-glow {
   position: absolute;
@@ -234,6 +343,11 @@ p { margin: 0 0 1.1em; }
 @media (min-width: 700px) {
   .hero { padding: 92px 0 78px; }
   .trust-strip { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 940px) {
+  /* pri dvojstĺpcovom hero má pás lícovať s textom, nie byť vycentrovaný */
+  .trust-strip { max-width: none; margin-top: 46px; }
 }
 
 /* ---------- Sections ---------- */
