@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Computrax">
+  <rect width="240" height="240" rx="48" fill="#0b1220"/>
+  <rect x="46" y="58" width="148" height="106" rx="22" fill="none" stroke="#f1f5f9" stroke-width="16"/>
+  <path d="M86 112 l24 24 l46 -46" fill="none" stroke="#22c55e" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="96" y1="192" x2="144" y2="192" stroke="#f1f5f9" stroke-width="16" stroke-linecap="round"/>
+</svg>
