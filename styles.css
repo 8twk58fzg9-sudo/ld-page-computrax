@@ -312,10 +312,10 @@ p { margin: 0 0 1.1em; }
   display: grid;
   gap: 14px;
   grid-template-columns: 1fr;
+  max-width: 760px;
 }
 
 @media (min-width: 640px) { .contact-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .contact-card {
   display: block;
