@@ -351,6 +351,105 @@ a.contact-card:hover { border-color: #9fcdff; transform: translateY(-2px); }
   color: var(--ink-soft);
 }
 
+/* ---------- Počítače ---------- */
+
+.pc-grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+@media (min-width: 820px) {
+  .pc-grid { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+}
+
+.pc-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.pc-media {
+  background: linear-gradient(160deg, #eef6ff 0%, #f7fbff 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 18px;
+}
+
+.pc-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.pc-body {
+  padding: 24px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pc-tag {
+  display: inline-block;
+  align-self: flex-start;
+  background: #eaf4ff;
+  color: var(--blue-deep);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.pc-body h3 { font-size: 1.32rem; margin-bottom: .45em; }
+.pc-body > p { font-size: .97rem; margin-bottom: 1.1em; }
+
+.pc-specs {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.pc-specs li {
+  position: relative;
+  padding-left: 26px;
+  font-size: .93rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.pc-specs li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322c55e' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12.5 l5.5 5.5 L20 6'/></svg>") no-repeat center / contain;
+}
+
+.pc-link {
+  margin-top: auto;
+  align-self: flex-start;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--blue-deep);
+  border-bottom: 2px solid #bcdcff;
+  padding-bottom: 2px;
+  transition: border-color .15s ease;
+}
+
+.pc-link::after { content: " →"; }
+.pc-link:hover { border-color: var(--blue); }
+
 /* ---------- Checklist ---------- */
 
 .checklist {
