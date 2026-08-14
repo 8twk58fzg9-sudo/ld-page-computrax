@@ -503,6 +503,12 @@ svg#scene {
   overflow: visible;
 }
 
+/* Odraz na podlahe zdvojnásobuje počet kreslených prvkov —
+   na mobile ho vypíname, aby scéna zostala plynulá. */
+@media (max-width: 939px) {
+  .odraz { display: none; }
+}
+
 .lblTxt {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
                "Helvetica Neue", Arial, sans-serif;

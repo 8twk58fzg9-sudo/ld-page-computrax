@@ -727,6 +727,27 @@ PARTS.forEach(function(p){
   p.lg = g;
 });
 
+/* --- odraz na podlahe: zrkadlova kopia sceny, ktora sa strati do stratena --- */
+var sceneEl = document.getElementById('scene');
+if(!RM){
+  document.getElementById('defs').insertAdjacentHTML('beforeend',
+    '<linearGradient id="gOdrazFade" x1="0" y1="452" x2="0" y2="628" gradientUnits="userSpaceOnUse">'+
+    '<stop offset="0" stop-color="#ffffff" stop-opacity="0.62"/>'+
+    '<stop offset="0.55" stop-color="#ffffff" stop-opacity="0.16"/>'+
+    '<stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>'+
+    '<mask id="mOdraz" maskUnits="userSpaceOnUse" x="0" y="452" width="560" height="180">'+
+    '<rect x="0" y="452" width="560" height="180" fill="url(#gOdrazFade)"/></mask>');
+
+  var odrazG = el('g',{'class':'odraz',mask:'url(#mOdraz)',opacity:'0.22','aria-hidden':'true'});
+  sceneEl.insertBefore(odrazG, stage);
+  var zrkadlo = el('g',{transform:'translate(0,904) scale(1,-1)'},odrazG);
+  var pouzi = document.createElementNS(NS,'use');
+  pouzi.setAttribute('href','#stage');
+  zrkadlo.appendChild(pouzi);
+  R.odraz = odrazG;
+}
+var poslednaSat = -1;
+
 /* ============================================================
    TIMELINE
    ============================================================ */
@@ -752,6 +773,15 @@ function render(p, time){
   var glowT  = eio(seg(p,0.830,1.000)) * dim;
   var lblT   = eio(seg(p,0.545,0.605)) * (1-eio(seg(p,0.712,0.756)));
 
+  /* --- mŕtvy → živý: v pokoji je stroj odfarbený, postupne naberá farbu --- */
+  var pulz  = RM ? 0 : Math.exp(-Math.pow((p-0.876)/0.020,2));
+  var zivot = cl(0.12 + 0.26*seg(p,0.00,0.24) + 0.62*seg(p,0.26,0.52) + 0.10*seg(p,0.86,1.00));
+  var jas   = 0.94 + 0.06*seg(p,0.10,0.52) + 0.03*seg(p,0.86,1.00) + pulz*0.06;
+  if(Math.abs(zivot-poslednaSat) > 0.004){
+    poslednaSat = zivot;
+    sceneEl.style.filter = 'saturate('+n(zivot)+') brightness('+n(jas)+')';
+  }
+
   /* --- scene transform: float, tilt, drag, explode pull-back --- */
   var fy = RM ? 0 : (Math.sin(time*0.85)*3.2 + Math.sin(time*0.41)*1.3);
   var fx = RM ? 0 : Math.sin(time*0.55)*1.6;
@@ -759,7 +789,8 @@ function render(p, time){
   var tx  = Math.max(-24,Math.min(24, par*10 + fx));
   var ty  = tilt.y*5.5 + fy - envel*4;
   var sk  = Math.max(-3.4,Math.min(3.4, tilt.x*0.55 + tilt.dx*1.7));
-  var sc  = 1 - envel*0.22;
+  var dych = RM ? 0 : Math.sin(time*0.62)*0.0048*(1-seg(p,0.20,0.46));
+  var sc  = 1 - envel*0.22 + dych;
   A(stage,'transform','translate('+n(PVX+tx)+','+n(PVY+ty)+') scale('+n(sc)+') skewY('+n(sk)+') translate('+(-PVX)+','+(-PVY)+')');
 
   /* parallax between layers -> reads as depth / rotation */
@@ -814,8 +845,8 @@ function render(p, time){
 
   /* --- reborn --- */
   A(R.ledOn,'opacity',n(alive));
-  A(R.ledHalo,'opacity',n(alive*0.9));
-  A(R.bar,'opacity',n(0.10+0.85*Math.max(alive, xray*0.35)));
+  A(R.ledHalo,'opacity',n(Math.min(1, alive*0.9 + pulz*0.75)));
+  A(R.bar,'opacity',n(Math.min(1, 0.10+0.85*Math.max(alive, xray*0.35) + pulz*0.55)));
   A(R.glow,'opacity',n(glowT*0.95));
   A(R.glow,'transform','translate('+n(tx*0.4)+','+n(ty*0.35-glowT*6)+') scale('+n(0.86+glowT*0.16)+')');
   A(R.pool,'opacity',n(glowT*0.85));
@@ -825,9 +856,16 @@ function render(p, time){
   A(R.shadow,'transform','translate('+n(tx*0.55)+','+n(Math.max(0,fy)*0.10)+') scale('+n(shs)+') translate('+n(-282*(1-shs)/shs*0)+',0)');
   A(R.shadow,'opacity',n(0.95 - envel*0.30 - Math.max(0,fy)*0.012));
 
-  /* --- labels --- */
-  A(lyrLbl,'opacity',n(lblT));
-  A(lyrLbl,'transform','translate(0,'+n((1-lblT)*10)+')');
+  /* --- popisky: každý prilieta vtedy, keď sa jeho diel oddelí --- */
+  A(lyrLbl,'opacity',n(lblT > 0 ? 1 : 0));
+  for(i=0;i<PARTS.length;i++){
+    o = PARTS[i];
+    if(!o.lg) continue;
+    var lt = eio(seg(p, 0.545+o.d*2.1, 0.605+o.d*2.1)) *
+             (1 - eio(seg(p, 0.712+o.d2, 0.756+o.d2)));
+    A(o.lg,'opacity',n(lt));
+    A(o.lg,'transform','translate('+n((1-lt)*6)+','+n((1-lt)*14)+')');
+  }
 
   /* --- fans --- */
   if(!RM){
