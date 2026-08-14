@@ -36,5 +36,6 @@ Potom otvor http://localhost:8899
 
 - **Recenzie** — Computrax zatiaľ nemá reálne hodnotenia a vymyslené sa
   nepoužívajú. Sekciu doplniť až po prvých objednávkach.
-- **Produkty a ceny** — stránka len informuje a posiela na e-shop.
+- **Produkty a ceny** — stránka len informuje a posiela na e-shop. Fotky v sekcii
+  „Dva svety" sú kategórie, nie konkrétne kusy na predaj.
 - **Telefónne číslo a WhatsApp** — na želanie majiteľa; kontakt je e-mail.

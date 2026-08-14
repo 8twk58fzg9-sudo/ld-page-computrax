@@ -600,16 +600,18 @@ svg#scene {
   flex-direction: column;
 }
 
+/* Fotky majú biele pozadie, tak je biela aj dlaždica — inak by okolo
+   nich bol vidieť obdĺžnik. */
 .pc-media {
-  background: linear-gradient(160deg, #eef6ff 0%, #f7fbff 100%);
+  background: #fff;
   border-bottom: 1px solid var(--line);
-  padding: 18px;
+  padding: 20px 20px 8px;
 }
 
 .pc-media img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 6;
   object-fit: contain;
 }
 
