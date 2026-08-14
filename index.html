@@ -219,62 +219,12 @@
           </div>
 
           <div class="story-scene">
-            <div class="rig">
-              <div class="pc">
-
-                <!-- skrinka -->
-                <div class="case">
-                  <div class="face case-front"></div>
-                  <div class="face case-back"></div>
-                  <div class="face case-left"></div>
-                  <div class="face case-top"></div>
-                  <div class="face case-bottom"></div>
-                  <div class="face case-glass"></div>
-                </div>
-
-                <!-- základná doska -->
-                <div class="board"></div>
-
-                <!-- skenovací lúč -->
-                <div class="beam"></div>
-
-                <!-- komponenty -->
-                <div class="part part-cpu" data-order="0">
-                  <div class="face pf-front"><span class="part-fins"></span></div>
-                  <div class="face pf-top"></div>
-                  <div class="face pf-side"></div>
-                  <b class="part-label">Procesor</b>
-                </div>
-
-                <div class="part part-ram" data-order="1">
-                  <div class="face pf-front"></div>
-                  <div class="face pf-top"></div>
-                  <div class="face pf-side"></div>
-                  <b class="part-label">RAM</b>
-                </div>
-
-                <div class="part part-gpu" data-order="2">
-                  <div class="face pf-front"></div>
-                  <div class="face pf-top"></div>
-                  <div class="face pf-side"></div>
-                  <b class="part-label">Grafika</b>
-                </div>
-
-                <div class="part part-ssd" data-order="3">
-                  <div class="face pf-front"></div>
-                  <div class="face pf-top"></div>
-                  <div class="face pf-side"></div>
-                  <b class="part-label">Úložisko</b>
-                </div>
-
-                <div class="part part-psu" data-order="4">
-                  <div class="face pf-front"></div>
-                  <div class="face pf-top"></div>
-                  <div class="face pf-side"></div>
-                  <b class="part-label">Zdroj</b>
-                </div>
-
-              </div>
+            <div id="wrap">
+              <svg id="scene" viewBox="0 0 560 600" role="img"
+                   aria-label="Repasovaný stolný počítač — kontrola, rozložený pohľad na komponenty a hotový stroj pripravený na Windows 11">
+                <defs id="defs"></defs>
+                <g id="stage"></g>
+              </svg>
             </div>
 
             <p class="story-hint">Potiahnite myšou a otočte si ho</p>
@@ -532,6 +482,7 @@
 </div>
 
 <script src="app.js"></script>
+<script src="pc-scene.js"></script>
 <script src="story.js"></script>
 </body>
 </html>
