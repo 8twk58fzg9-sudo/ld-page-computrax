@@ -465,6 +465,410 @@ a.contact-card:hover { border-color: #9fcdff; transform: translateY(-2px); }
   color: var(--ink-soft);
 }
 
+/* =========================================================
+   PRÍBEH POČÍTAČA — 3D scéna riadená scrollom
+   Premenné nastavuje story.js pri každom snímku:
+   --p  celkový postup 0–1      --ex  rozobratie 0–1
+   --sc postup skenu 0–1        --gl  finálne rozsvietenie 0–1
+   --rx --ry  natočenie kamery v stupňoch
+   ========================================================= */
+
+.story {
+  --p: 0; --ex: 0; --sc: 0; --gl: 0; --op: 0;
+  --rx: -12deg; --ry: -26deg;
+  --case-w: 210px; --case-h: 330px; --case-d: 190px;
+  --k: 1; /* násobič vzdialenosti rozletu */
+  background: linear-gradient(180deg, #ffffff 0%, #f3f8ff 45%, #ffffff 100%);
+  border-block: 1px solid var(--line);
+}
+
+.story-track { height: 420vh; }
+
+.story-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.story-inner {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 940px) {
+  .story-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+/* ---- text krokov ---- */
+
+.story-steps { position: relative; min-height: 300px; }
+
+.story-step {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .45s ease, transform .45s ease;
+  pointer-events: none;
+}
+
+.story-step.is-on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.story-num {
+  display: inline-block;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
+
+.story-step h2 { font-size: clamp(1.5rem, 3.4vw, 2.3rem); margin-bottom: .4em; }
+.story-step p { color: var(--ink-soft); max-width: 460px; }
+.story-step .btn { margin-top: 6px; }
+
+/* ---- 3D scéna ---- */
+
+.story-scene {
+  perspective: 1500px;
+  perspective-origin: 50% 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.story-scene:active { cursor: grabbing; }
+
+.rig {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: scale(calc(1 - var(--ex) * 0.20)) rotateX(var(--rx)) rotateY(var(--ry));
+  will-change: transform;
+}
+
+.pc {
+  position: relative;
+  width: var(--case-w);
+  height: var(--case-h);
+  transform-style: preserve-3d;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+/* skrinka */
+
+.case { position: absolute; inset: 0; transform-style: preserve-3d; }
+
+.case .face {
+  border-radius: 6px;
+  background: #223047;
+  border: 1px solid #4a627f;
+  transition: background .5s ease, border-color .5s ease;
+}
+
+/* pri skenovaní a rozoberaní sa plášť „preröntgenuje“ */
+.case-front,
+.case-back,
+.case-top,
+.case-bottom,
+.case-left { opacity: calc(1 - var(--op) * 0.88); }
+
+.case-front  { transform: translateZ(calc(var(--case-d) / 2)); }
+.case-back   { transform: rotateY(180deg) translateZ(calc(var(--case-d) / 2)); }
+
+.case-left {
+  width: var(--case-d);
+  left: calc((var(--case-w) - var(--case-d)) / 2);
+  transform: rotateY(-90deg) translateZ(calc(var(--case-w) / 2));
+}
+
+.case-top,
+.case-bottom {
+  height: var(--case-d);
+  top: calc((var(--case-h) - var(--case-d)) / 2);
+}
+
+.case-top    { transform: rotateX(90deg)  translateZ(calc(var(--case-h) / 2)); }
+.case-bottom { transform: rotateX(-90deg) translateZ(calc(var(--case-h) / 2)); }
+
+/* predný panel — mriežka a kontrolka */
+
+.case-front::before {
+  content: "";
+  position: absolute;
+  left: 13%;
+  right: 13%;
+  top: 7%;
+  height: 30%;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, .13);
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .20) 0 2px, transparent 2px 7px);
+}
+
+.case-front::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  border-radius: 50%;
+  background: #7b8ca3;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .08);
+  transition: background .5s ease, box-shadow .5s ease;
+}
+
+.story.is-final .case-front::after {
+  background: #22c55e;
+  box-shadow: 0 0 12px 3px rgba(34, 197, 94, .8);
+}
+
+/* presklený bok — pri rozobratí odletí */
+.case .case-glass {
+  width: var(--case-d);
+  left: calc((var(--case-w) - var(--case-d)) / 2);
+  background-color: rgba(126, 196, 255, .10);
+  background-image: linear-gradient(122deg,
+      rgba(255, 255, 255, .26) 0%, rgba(255, 255, 255, .26) 13%,
+      rgba(255, 255, 255, 0) 14%, rgba(255, 255, 255, 0) 41%,
+      rgba(255, 255, 255, .12) 42%, rgba(255, 255, 255, .12) 49%,
+      rgba(255, 255, 255, 0) 50%);
+  border: 1px solid rgba(170, 218, 255, .55);
+  backface-visibility: visible;
+  transform:
+    rotateY(90deg)
+    translateZ(calc(var(--case-w) / 2))
+    translateX(calc(var(--ex) * 250px * var(--k)))
+    rotateZ(calc(var(--ex) * 16deg));
+  opacity: calc(1 - var(--ex) * .55);
+}
+
+/* základná doska */
+
+.board {
+  position: absolute;
+  left: 24px;
+  top: 22px;
+  width: calc(var(--case-w) - 48px);
+  height: calc(var(--case-h) - 44px);
+  border-radius: 5px;
+  background-color: #12304a;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0, 232, 251, .16) 0 2px, transparent 2px 15px),
+    repeating-linear-gradient(0deg, rgba(0, 232, 251, .16) 0 2px, transparent 2px 15px);
+  border: 1px solid #35597d;
+  transform: translateZ(calc(var(--case-d) / -6)) translateX(calc(var(--ex) * -14px * var(--k)));
+}
+
+/* skenovací lúč */
+
+.beam {
+  position: absolute;
+  left: 4px;
+  width: calc(var(--case-w) - 8px);
+  height: 4px;
+  top: 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(0, 232, 251, 0), #7df3ff 20%, #ffffff 50%, #7df3ff 80%, rgba(0, 232, 251, 0));
+  box-shadow: 0 0 34px 14px rgba(0, 232, 251, .85);
+  opacity: calc(var(--sc) * (1 - var(--sc)) * 4);
+  transform:
+    translateZ(calc(var(--case-d) / 2 + 8px))
+    translateY(calc(var(--sc) * (var(--case-h) - 6px)));
+}
+
+/* ---- komponenty ---- */
+
+.part {
+  position: absolute;
+  transform-style: preserve-3d;
+  --lit: 0;
+}
+
+.part .face {
+  border-radius: 4px;
+  background: #465f80;
+  border: 1px solid #7b98bb;
+  box-shadow: inset 0 0 0 100px rgba(0, 232, 251, calc(var(--lit) * .26));
+  transition: box-shadow .35s ease, border-color .35s ease;
+}
+
+.part.is-lit .face { border-color: #22c55e; }
+
+.part-label {
+  position: absolute;
+  left: 50%;
+  top: -34px;
+  white-space: nowrap;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  box-shadow: var(--shadow);
+  opacity: var(--ex);
+  /* billboard — popisok vždy čelom ku kamere */
+  transform:
+    translateX(-50%)
+    translateZ(60px)
+    rotateY(calc(var(--ry) * -1))
+    rotateX(calc(var(--rx) * -1));
+}
+
+/* rozmery a rozlet jednotlivých dielov */
+
+.part-cpu {
+  width: 92px; height: 58px;
+  left: 26px; top: 34px;
+  transform: translate3d(calc(var(--ex) * -150px * var(--k)), calc(var(--ex) * -110px * var(--k)), calc(20px + var(--ex) * 110px * var(--k)));
+}
+
+.part-ram {
+  width: 46px; height: 66px;
+  left: 138px; top: 30px;
+  transform: translate3d(calc(var(--ex) * 168px * var(--k)), calc(var(--ex) * -150px * var(--k)), calc(10px + var(--ex) * 70px * var(--k)));
+}
+
+.part-gpu {
+  width: 150px; height: 34px;
+  left: 30px; top: 132px;
+  transform: translate3d(calc(var(--ex) * 190px * var(--k)), calc(var(--ex) * 10px * var(--k)), calc(34px + var(--ex) * 130px * var(--k)));
+}
+
+.part-ssd {
+  width: 74px; height: 26px;
+  left: 26px; top: 196px;
+  transform: translate3d(calc(var(--ex) * -186px * var(--k)), calc(var(--ex) * 74px * var(--k)), calc(6px + var(--ex) * 92px * var(--k)));
+}
+
+.part-psu {
+  width: 116px; height: 60px;
+  left: 48px; top: 248px;
+  transform: translate3d(calc(var(--ex) * -20px * var(--k)), calc(var(--ex) * 152px * var(--k)), calc(0px + var(--ex) * 46px * var(--k)));
+}
+
+.part .pf-front { transform: translateZ(16px); }
+.part .pf-top   { height: 32px; top: -16px; transform: rotateX(90deg); }
+.part .pf-side  { width: 32px; left: -16px; transform: rotateY(-90deg); }
+
+/* rebrá chladiča */
+.part-fins {
+  position: absolute;
+  inset: 8px;
+  background: repeating-linear-gradient(90deg, #46607f 0 3px, transparent 3px 10px);
+  border-radius: 2px;
+}
+
+/* ---- finálne rozsvietenie ---- */
+
+.story-scene .rig::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 460px;
+  height: 460px;
+  margin: -230px 0 0 -230px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 132, 255, .38), rgba(0, 132, 255, 0));
+  opacity: var(--gl);
+  transform: translateZ(-160px);
+  pointer-events: none;
+}
+
+.story.is-final .case .face {
+  background: #16304f;
+  border-color: #1d6fb8;
+}
+
+.story.is-final .part .face { border-color: #22c55e; }
+
+/* ---- ukazovateľ postupu a nápoveda ---- */
+
+.story-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(11, 18, 32, .07);
+}
+
+.story-progress span {
+  display: block;
+  height: 100%;
+  width: calc(var(--p) * 100%);
+  background: var(--grad);
+}
+
+.story-hint {
+  margin: 26px 0 0;
+  font-size: .84rem;
+  color: var(--ink-soft);
+  opacity: var(--gl);
+  transition: opacity .3s ease;
+}
+
+/* ---- mobil ---- */
+
+@media (max-width: 939px) {
+  .story { --case-w: 150px; --case-h: 236px; --case-d: 136px; --k: .58; }
+  .story-track { height: 340vh; }
+  .story-steps { min-height: 260px; }
+  .story-scene { min-height: 300px; }
+  .story-inner { gap: 8px; }
+}
+
+/* ---- vypnuté animácie: statický, hotový stav ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .story-track { height: auto; }
+
+  .story-stage {
+    position: static;
+    height: auto;
+    padding: 62px 0;
+    overflow: visible;
+  }
+
+  .story-steps { min-height: 0; display: grid; gap: 26px; }
+
+  .story-step {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .story-scene { display: none; }
+  .story-progress { display: none; }
+}
+
 /* ---------- Počítače ---------- */
 
 .pc-grid {
