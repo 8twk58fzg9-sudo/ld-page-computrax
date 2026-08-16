@@ -12,20 +12,24 @@
 <meta property="og:image" content="assets/og-image.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0084ff">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="#top"><img src="assets/computrax-logo.svg" alt="Computrax"></a>
-    <nav class="nav">
+    <nav class="nav" id="hlavne-menu">
       <a href="#preco">Prečo my</a>
       <a href="#o-nas">O nás</a>
       <a href="#firmy">Firmy a školy</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
     <a class="btn btn-primary btn-sm js-shop" data-utm="hlavicka" href="#">Pozrieť počítače</a>
+    <button class="nav-toggle" type="button" aria-expanded="false"
+            aria-controls="hlavne-menu" aria-label="Otvoriť menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -57,10 +61,10 @@
 
     <div class="wrap">
       <ul class="trust-strip">
-        <li><strong>24</strong> mesiacov záruka</li>
-        <li><strong>100 %</strong> kusov testovaných</li>
-        <li><strong>14</strong> dní na vrátenie</li>
-        <li><strong>SR</strong> doručenie po celej krajine</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6 4.8 5.6v5.9c0 4.4 3 8.5 7.2 9.9 4.2-1.4 7.2-5.5 7.2-9.9V5.6z"/></svg><strong>24</strong><span>mesiacov záruka</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg><strong>100 %</strong><span>kusov testovaných</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16"/></svg><strong>14</strong><span>dní na vrátenie</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/></svg><strong>SR</strong><span>doručenie po celej krajine</span></li>
       </ul>
     </div>
     <div class="hero-glow" aria-hidden="true"></div>
@@ -132,7 +136,7 @@
   </section>
 
   <!-- O NÁS -->
-  <section id="o-nas" class="section">
+  <section data-reveal-skupina id="o-nas" class="section">
     <div class="wrap narrow">
       <p class="eyebrow">O nás</p>
       <h2>Váš počítač nie je pokazený</h2>
@@ -165,7 +169,7 @@
   </section>
 
   <!-- PREČO -->
-  <section id="preco" class="section section-alt">
+  <section data-reveal-skupina id="preco" class="section section-alt">
     <div class="wrap">
       <p class="eyebrow">Prečo Computrax</p>
       <h2>Tri dôvody, prečo to dáva zmysel</h2>
@@ -202,7 +206,7 @@
   </section>
 
   <!-- POČÍTAČE -->
-  <section id="pocitace" class="section">
+  <section data-reveal-skupina id="pocitace" class="section">
     <div class="wrap">
       <p class="eyebrow">Čo u nás nájdete</p>
       <h2>Dva svety, jeden prístup</h2>
@@ -211,49 +215,7 @@
         24 mesiacov — líši sa len to, na čo sú stavané.
       </p>
 
-      <div class="pc-grid">
-        <article class="pc-card">
-          <div class="pc-media">
-            <img src="assets/foto-herny.jpg" alt="Herný repasovaný počítač s presklením a RGB podsvietením"
-                 width="623" height="760" loading="lazy">
-          </div>
-          <div class="pc-body">
-            <span class="pc-tag">Na hranie</span>
-            <h3>Herné počítače</h3>
-            <p>
-              Vyradené herné a výkonné pracovné zostavy s dedikovanou grafikou.
-              Kontrolujeme teploty aj stabilitu pri plnom zaťažení, nie len to,
-              či nabehne systém.
-            </p>
-            <ul class="pc-specs">
-              <li>Dedikovaná grafická karta</li>
-              <li>Testované pri plnom zaťažení</li>
-              <li>Priestor na neskorší upgrade RAM alebo SSD</li>
-            </ul>
-            <a class="pc-link js-shop" data-utm="pc-herny" href="#">Pozrieť herné PC</a>
-          </div>
-        </article>
-
-        <article class="pc-card">
-          <div class="pc-media">
-            <img src="assets/foto-kancelarsky.jpg" alt="Kancelársky repasovaný počítač Dell OptiPlex"
-                 width="398" height="760" loading="lazy">
-          </div>
-          <div class="pc-body">
-            <span class="pc-tag">Na prácu a školu</span>
-            <h3>Kancelárske počítače</h3>
-            <p>
-              Vyradené firemné počítače, ktoré spĺňajú požiadavky Windows 11.
-              Tiché, úsporné a pripravené na roky bežnej práce, výučby
-              a kancelárskych programov.
-            </p>
-            <ul class="pc-specs">
-              <li>Spĺňajú požiadavky Windows 11</li>
-              <li>SSD a systém pripravený na prvé spustenie</li>
-              <li>Vhodné aj pre firmy a školy vo väčšom počte</li>
-            </ul>
-            <a class="pc-link js-shop" data-utm="pc-kancelarsky" href="#">Pozrieť kancelárske PC</a>
-          </div>
+      <div class="pc-grid" id="pc-grid"></div>
         </article>
       </div>
 
@@ -266,7 +228,7 @@
   </section>
 
   <!-- KONTROLA -->
-  <section id="kontrola" class="section section-alt">
+  <section data-reveal-skupina id="kontrola" class="section section-alt">
     <div class="wrap">
       <p class="eyebrow">Kontrola kvality</p>
       <h2>Čo kontrolujeme pred odoslaním</h2>
@@ -287,7 +249,7 @@
   </section>
 
   <!-- FIRMY A ŠKOLY -->
-  <section id="firmy" class="section">
+  <section data-reveal-skupina id="firmy" class="section">
     <div class="wrap">
       <p class="eyebrow">Firmy a školy</p>
       <h2>Potrebujete viac kusov naraz?</h2>
@@ -325,7 +287,7 @@
   </section>
 
   <!-- KONTAKT -->
-  <section id="kontakt" class="section">
+  <section data-reveal-skupina id="kontakt" class="section">
     <div class="wrap">
       <p class="eyebrow">Kontakt</p>
       <h2>Ozvite sa nám</h2>
@@ -348,28 +310,55 @@
 </main>
 
 <footer class="footer">
-  <div class="wrap footer-inner">
-    <img class="footer-logo" src="assets/computrax-logo-dark.svg" alt="Computrax">
-    <p>
-      Prevádzkovateľ: NANOERA s.r.o., Rešov 32, 086 21 Rešov, Slovenská republika ·
-      IČO 46882812 · DIČ 2023703297 · IČ DPH SK2023703297<br>
-      Zapísaná v Obchodnom registri Okresného súdu Prešov, oddiel Sro, vložka č. 31775/P<br>
-      E-mail: <a href="mailto:info@nanoera.sk">info@nanoera.sk</a>
-    </p>
-    <p>
-      Orgán dozoru: Inšpektorát Slovenskej obchodnej inšpekcie so sídlom v Prešove
-      pre Prešovský kraj, Obrancov mieru 6, 080 01 Prešov 1 ·
-      tel. 051/772 15 97 · <a href="mailto:pr@soi.sk">pr@soi.sk</a>
-    </p>
-    <p>
-      Táto stránka je informačná — nepredáva tovar, nezbiera osobné údaje
-      a nepoužíva cookies ani analytické nástroje. Nákup, obchodné podmienky
-      a reklamačný poriadok nájdete v e-shope.
-    </p>
-    <p class="footer-links">
-      <a class="js-shop" data-utm="paticka" href="#">Prejsť do e-shopu a na obchodné podmienky</a>
-    </p>
-    <p class="copy">© 2026 NANOERA s.r.o.</p>
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/computrax-logo-dark.svg" alt="Computrax">
+        <p>Repasované počítače pripravené na Windows 11 — otestované, so zárukou
+           24 mesiacov a faktúrou.</p>
+        <a class="btn btn-primary btn-sm js-shop" data-utm="paticka" href="#">Pozrieť počítače</a>
+      </div>
+
+      <nav class="footer-col" aria-label="Sekcie stránky">
+        <h2>Na stránke</h2>
+        <a href="#pribeh">Ako to prebieha</a>
+        <a href="#o-nas">O nás</a>
+        <a href="#preco">Prečo Computrax</a>
+        <a href="#firmy">Firmy a školy</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+
+      <div class="footer-col">
+        <h2>Kontakt</h2>
+        <a href="mailto:info@nanoera.sk">info@nanoera.sk</a>
+        <p>Po–Pi 12:00 – 18:00</p>
+        <p>Rešov 32, 086 21 Rešov<br>Slovenská republika</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Prevádzkovateľ</h2>
+        <p>NANOERA s.r.o.<br>
+           IČO 46882812 · DIČ 2023703297<br>
+           IČ DPH SK2023703297</p>
+        <p>Obchodný register Okresného súdu Prešov,<br>oddiel Sro, vložka č. 31775/P</p>
+      </div>
+
+    </div>
+
+    <div class="footer-legal">
+      <p>
+        Orgán dozoru: Inšpektorát Slovenskej obchodnej inšpekcie so sídlom v Prešove
+        pre Prešovský kraj, Obrancov mieru 6, 080 01 Prešov 1 ·
+        tel. 051/772 15 97 · <a href="mailto:pr@soi.sk">pr@soi.sk</a>
+      </p>
+      <p>
+        Táto stránka je informačná — nepredáva tovar, nezbiera osobné údaje
+        a nepoužíva cookies ani analytické nástroje. Nákup, obchodné podmienky
+        a reklamačný poriadok nájdete v <a class="js-shop" data-utm="paticka-podmienky" href="#">e-shope</a>.
+      </p>
+      <p class="copy">© 2026 NANOERA s.r.o.</p>
+    </div>
   </div>
 </footer>
 
@@ -377,8 +366,9 @@
   <a class="btn btn-primary js-shop" data-utm="sticky-mobil" href="#">Pozrieť počítače</a>
 </div>
 
-<script src="app.js?v=3"></script>
-<script src="pc-scene.js?v=3"></script>
-<script src="story.js?v=3"></script>
+<script src="produkty.js?v=5"></script>
+<script src="app.js?v=5"></script>
+<script src="pc-scene.js?v=5"></script>
+<script src="story.js?v=5"></script>
 </body>
 </html>

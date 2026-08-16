@@ -36,4 +36,74 @@ document.addEventListener('DOMContentLoaded', function () {
     link.setAttribute('href', url + parts.join('&'));
     link.setAttribute('rel', 'noopener');
   }
+
+  menu();
+  odkryvanie();
 });
+
+/* ---------------------------------------------------------------
+   Mobilné menu — pod 860 px sa navigácia zbalí pod tlačidlo.
+   --------------------------------------------------------------- */
+function menu() {
+  var tlacidlo = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('hlavne-menu');
+  if (!tlacidlo || !nav) return;
+
+  function prepni(otvorit) {
+    var otvorene = otvorit === undefined
+      ? tlacidlo.getAttribute('aria-expanded') !== 'true'
+      : otvorit;
+    tlacidlo.setAttribute('aria-expanded', otvorene ? 'true' : 'false');
+    tlacidlo.setAttribute('aria-label', otvorene ? 'Zavrieť menu' : 'Otvoriť menu');
+    document.body.classList.toggle('menu-otvorene', otvorene);
+  }
+
+  tlacidlo.addEventListener('click', function () { prepni(); });
+
+  /* klik na položku menu ho zavrie */
+  var polozky = nav.querySelectorAll('a');
+  for (var i = 0; i < polozky.length; i++) {
+    polozky[i].addEventListener('click', function () { prepni(false); });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') prepni(false);
+  });
+
+  /* pri prechode na širokú obrazovku menu zavrieme, nech neostane visieť */
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 860) prepni(false);
+  });
+}
+
+/* ---------------------------------------------------------------
+   Odkrývanie sekcií pri scrolle.
+   --------------------------------------------------------------- */
+function odkryvanie() {
+  var ciele = document.querySelectorAll('[data-reveal-skupina] > .wrap > *, [data-reveal]');
+  if (!ciele.length) return;
+
+  /* Bez podpory alebo s vypnutými animáciami ukážeme všetko naraz. */
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    for (var i = 0; i < ciele.length; i++) ciele[i].classList.add('je-videne');
+    return;
+  }
+
+  var poradie = 0;
+  var sledovac = new IntersectionObserver(function (zaznamy) {
+    for (var j = 0; j < zaznamy.length; j++) {
+      if (!zaznamy[j].isIntersecting) continue;
+      var el = zaznamy[j].target;
+      el.style.transitionDelay = (Math.min(poradie++, 4) * 70) + 'ms';
+      el.classList.add('je-videne');
+      sledovac.unobserve(el);
+    }
+    poradie = 0;
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+
+  for (var k = 0; k < ciele.length; k++) {
+    ciele[k].classList.add('na-odkrytie');
+    sledovac.observe(ciele[k]);
+  }
+}
