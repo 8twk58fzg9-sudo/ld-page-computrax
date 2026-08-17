@@ -756,8 +756,12 @@ svg#scene {
   margin-top: 32px;
 }
 
-@media (min-width: 820px) {
-  .pc-grid { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+/* pružná mriežka — prispôsobí sa počtu počítačov v produkty.js */
+@media (min-width: 720px) {
+  .pc-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 26px;
+  }
 }
 
 .pc-card {
@@ -833,6 +837,20 @@ svg#scene {
 
 .pc-body h3 { font-size: 1.32rem; margin-bottom: .45em; }
 .pc-body > p { font-size: .97rem; margin-bottom: 1.1em; }
+
+.pc-cena {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+
+.pc-poznamka {
+  font-size: .85rem;
+  color: var(--ink-soft);
+  margin: -8px 0 18px;
+}
 
 .pc-specs {
   list-style: none;

@@ -37,6 +37,11 @@ python3 -m http.server 8899
 
 Potom otvor http://localhost:8899
 
+## Keď sa niečo mení
+
+Pozri **`BUDUCNOST.md`** — konkrétny postup pre pridanie nového (nerepasovaného)
+počítača, nasadenie vlastnej domény, zapnutie analytiky a ďalšie zmeny.
+
 ## Čo na stránke zámerne NIE JE
 
 - **Recenzie** — Computrax zatiaľ nemá reálne hodnotenia a vymyslené sa

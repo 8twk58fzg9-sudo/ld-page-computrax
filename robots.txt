@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://ld-page-computrax.vercel.app/sitemap.xml

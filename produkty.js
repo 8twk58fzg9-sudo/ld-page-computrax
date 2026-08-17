@@ -13,6 +13,12 @@
      'repas' → modrý štítok „Repasovaný“
      'novy'  → zelený štítok „Nový“
 
+   Nepovinné políčka:
+     cena     → napr. '299 €'. Ak ho vynecháš, cena sa nezobrazí vôbec.
+                POZOR: uvedená cena musí sedieť s cenou v e-shope. Rozdiel je
+                klamlivá obchodná praktika podľa zákona 250/2007 Z. z.
+     poznamka → malý text pod zoznamom vlastností (napr. „Dostupnosť na overenie“)
+
    POZOR pri nových (nerepasovaných) počítačoch:
    texty na zvyšku stránky hovoria o repase — testovanie kus po kuse,
    kozmetické stopy, ekologický prínos. Pri novom tovare tie tvrdenia
@@ -107,9 +113,17 @@ var PRODUKTY = [
     text(prvok('h3', null, telo), p.nazov);
     text(prvok('p', null, telo), p.popis);
 
+    if (p.cena) {
+      text(prvok('p', 'pc-cena', telo), p.cena);
+    }
+
     var zoznam = prvok('ul', 'pc-specs', telo);
     for (var j = 0; j < p.body.length; j++) {
       text(prvok('li', null, zoznam), p.body[j]);
+    }
+
+    if (p.poznamka) {
+      text(prvok('p', 'pc-poznamka', telo), p.poznamka);
     }
 
     var a = prvok('a', 'pc-link js-shop', telo);
