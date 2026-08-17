@@ -5,9 +5,14 @@ Bez build kroku — čistý HTML/CSS/JS.
 
 ## Súbory
 
+Web má šesť stránok: `index`, `o-nas`, `pocitace`, `kontrola`, `firmy`, `kontakt`.
+Hlavička a pätička sú v každom súbore zduplikované — pri ich zmene treba upraviť
+všetkých šesť.
+
 | Súbor | Popis |
 |---|---|
-| `index.html` | celá stránka |
+| `index.html` | domovská stránka |
+| `produkty.js` | **zoznam počítačov** — jediné miesto, kde sa pridáva alebo mení počítač |
 | `styles.css` | štýly (farby prevzaté z loga) |
 | `app.js` | nastavuje adresu e-shopu na všetky CTA tlačidlá |
 | `assets/` | logo, favicon, OG obrázok |

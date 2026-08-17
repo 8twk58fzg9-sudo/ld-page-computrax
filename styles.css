@@ -26,8 +26,8 @@ body {
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
                "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 18px;
+  line-height: 1.72;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -42,7 +42,10 @@ a { color: var(--blue-deep); }
   padding: 0 20px;
 }
 
-.narrow { max-width: 760px; }
+/* ~68 znakov na riadok — nad tým sa oko na konci riadka stráca */
+.narrow { max-width: 41rem; }
+
+.narrow h2 { margin-top: 1.9em; }
 
 h1, h2, h3 {
   line-height: 1.15;
@@ -54,7 +57,7 @@ h1 { font-size: clamp(2.1rem, 6.4vw, 3.9rem); font-weight: 800; }
 h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 780; }
 h3 { font-size: 1.18rem; font-weight: 700; }
 
-p { margin: 0 0 1.1em; }
+p { margin: 0 0 1.25em; }
 
 .grad {
   background: var(--grad);
@@ -307,9 +310,10 @@ p { margin: 0 0 1.1em; }
 }
 
 .lede {
-  font-size: clamp(1.02rem, 2.3vw, 1.2rem);
+  font-size: clamp(1.05rem, 2.3vw, 1.22rem);
+  line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 620px;
+  max-width: 38rem;
   margin: 0 auto 30px;
 }
 
@@ -378,6 +382,80 @@ p { margin: 0 0 1.1em; }
   .trust-strip { max-width: none; margin-top: 46px; }
 }
 
+/* ---------- Hlavička podstránky ---------- */
+
+.page-head {
+  background: linear-gradient(180deg, #f2f8ff 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 54px 0 46px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  margin-bottom: .35em;
+}
+
+.page-head .lede { margin: 0; }
+
+@media (min-width: 700px) {
+  .page-head { padding: 74px 0 64px; }
+}
+
+/* aktívna položka v menu */
+.nav a.je-aktivna { color: var(--ink); }
+
+@media (min-width: 860px) {
+  .nav a.je-aktivna {
+    box-shadow: inset 0 -2px 0 var(--blue);
+    padding-bottom: 3px;
+  }
+}
+
+/* karta, ktorá je celá odkazom */
+.card-odkaz {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-odkaz .pc-link { display: inline-block; margin-top: 6px; }
+
+/* ---------- Hlavicka podstranky ---------- */
+
+.page-head {
+  background: linear-gradient(180deg, #f2f8ff 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 54px 0 46px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  margin-bottom: .35em;
+}
+
+.page-head .lede { margin: 0; }
+
+@media (min-width: 700px) {
+  .page-head { padding: 74px 0 64px; }
+}
+
+.nav a.je-aktivna { color: var(--ink); }
+
+@media (min-width: 860px) {
+  .nav a.je-aktivna {
+    box-shadow: inset 0 -2px 0 var(--blue);
+    padding-bottom: 3px;
+  }
+}
+
+.card-odkaz {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-odkaz .pc-link { display: inline-block; margin-top: 6px; }
+
 /* ---------- Sections ---------- */
 
 .section { padding: 62px 0; }
@@ -386,7 +464,7 @@ p { margin: 0 0 1.1em; }
 .section p { color: var(--ink-soft); }
 .section h2 { color: var(--ink); }
 
-.section-lede { max-width: 560px; margin-bottom: 34px; }
+.section-lede { max-width: 36rem; margin-bottom: 34px; }
 
 @media (min-width: 700px) {
   .section { padding: 88px 0; }
@@ -423,7 +501,7 @@ p { margin: 0 0 1.1em; }
   margin-bottom: 12px;
 }
 
-.card p { margin-bottom: 0; font-size: .97rem; }
+.card p { margin-bottom: 0; font-size: .96rem; line-height: 1.62; }
 
 /* ---------- CTA band ---------- */
 
@@ -807,6 +885,10 @@ svg#scene {
   max-width: 780px;
 }
 
+.checklist li b { color: var(--ink); }
+
+.checklist li b { color: var(--ink); }
+
 .checklist li {
   position: relative;
   padding: 14px 18px 14px 52px;
@@ -877,23 +959,6 @@ svg#scene {
 
   /* aby lišta neprekrývala koniec pätičky */
   body { padding-bottom: 104px; }
-}
-
-/* ---------- Odkrývanie pri scrolle ---------- */
-
-.na-odkrytie {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .55s ease, transform .55s ease;
-}
-
-.je-videne {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .na-odkrytie { opacity: 1; transform: none; transition: none; }
 }
 
 /* ---------- Footer ---------- */

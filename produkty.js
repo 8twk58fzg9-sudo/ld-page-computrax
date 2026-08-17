@@ -88,7 +88,6 @@ var PRODUKTY = [
     var stav = STAVY[p.stav] || STAVY.repas;
 
     var karta = prvok('article', 'pc-card', mriezka);
-    karta.setAttribute('data-reveal', '');
 
     var media = prvok('div', 'pc-media', karta);
 

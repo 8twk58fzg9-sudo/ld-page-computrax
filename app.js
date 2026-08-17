@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   menu();
-  odkryvanie();
 });
 
 /* ---------------------------------------------------------------
@@ -74,36 +73,4 @@ function menu() {
   window.addEventListener('resize', function () {
     if (window.innerWidth >= 860) prepni(false);
   });
-}
-
-/* ---------------------------------------------------------------
-   Odkrývanie sekcií pri scrolle.
-   --------------------------------------------------------------- */
-function odkryvanie() {
-  var ciele = document.querySelectorAll('[data-reveal-skupina] > .wrap > *, [data-reveal]');
-  if (!ciele.length) return;
-
-  /* Bez podpory alebo s vypnutými animáciami ukážeme všetko naraz. */
-  if (!('IntersectionObserver' in window) ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    for (var i = 0; i < ciele.length; i++) ciele[i].classList.add('je-videne');
-    return;
-  }
-
-  var poradie = 0;
-  var sledovac = new IntersectionObserver(function (zaznamy) {
-    for (var j = 0; j < zaznamy.length; j++) {
-      if (!zaznamy[j].isIntersecting) continue;
-      var el = zaznamy[j].target;
-      el.style.transitionDelay = (Math.min(poradie++, 4) * 70) + 'ms';
-      el.classList.add('je-videne');
-      sledovac.unobserve(el);
-    }
-    poradie = 0;
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-
-  for (var k = 0; k < ciele.length; k++) {
-    ciele[k].classList.add('na-odkrytie');
-    sledovac.observe(ciele[k]);
-  }
 }

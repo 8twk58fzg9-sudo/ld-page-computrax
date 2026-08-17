@@ -5,25 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Computrax — repasované počítače so zárukou 24 mesiacov</title>
 <meta name="description" content="Otestované repasované počítače pripravené na Windows 11. Záruka 24 mesiacov, faktúra a doručenie po celom Slovensku. Výkon za zlomok ceny nového PC.">
+<link rel="canonical" href="https://ld-page-computrax.vercel.app/">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <meta property="og:title" content="Computrax — repasované počítače so zárukou 24 mesiacov">
-<meta property="og:description" content="Otestované repasované počítače pripravené na Windows 11. Záruka 24 mesiacov, faktúra a doručenie po celom Slovensku.">
+<meta property="og:description" content="Otestované repasované počítače pripravené na Windows 11. Záruka 24 mesiacov, faktúra a doručenie po celom Slovensku. Výkon za zlomok ceny nového PC.">
 <meta property="og:image" content="assets/og-image.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0084ff">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="#top"><img src="assets/computrax-logo.svg" alt="Computrax"></a>
+    <a class="brand" href="index.html"><img src="assets/computrax-logo.svg" alt="Computrax"></a>
     <nav class="nav" id="hlavne-menu">
-      <a href="#preco">Prečo my</a>
-      <a href="#o-nas">O nás</a>
-      <a href="#firmy">Firmy a školy</a>
-      <a href="#kontakt">Kontakt</a>
+      <a href="o-nas.html">O nás</a>
+      <a href="pocitace.html">Počítače</a>
+      <a href="kontrola.html">Kontrola kvality</a>
+      <a href="firmy.html">Firmy a školy</a>
+      <a href="kontakt.html">Kontakt</a>
     </nav>
     <a class="btn btn-primary btn-sm js-shop" data-utm="hlavicka" href="#">Pozrieť počítače</a>
     <button class="nav-toggle" type="button" aria-expanded="false"
@@ -48,7 +50,7 @@
         </p>
         <div class="cta-row">
           <a class="btn btn-primary btn-lg js-shop" data-utm="hero" href="#">Pozrieť počítače</a>
-          <a class="btn btn-ghost btn-lg" href="#o-nas">Ako to funguje</a>
+          <a class="btn btn-ghost btn-lg" href="o-nas.html">Ako to funguje</a>
         </div>
       </div>
 
@@ -70,106 +72,8 @@
     <div class="hero-glow" aria-hidden="true"></div>
   </section>
 
-  <!-- PRÍBEH POČÍTAČA -->
-  <section id="pribeh" class="story" aria-label="Ako z vyradeného počítača spravíme stroj pripravený na Windows 11">
-    <div class="story-track">
-      <div class="story-stage">
-        <div class="wrap story-inner">
-
-          <div class="story-copy">
-            <p class="eyebrow">Ako to prebieha</p>
-            <div class="story-steps">
-              <div class="story-step" data-step="0">
-                <span class="story-num">01</span>
-                <h2>Odstrihnutý, nie pokazený</h2>
-                <p>
-                  Funkčný počítač, ktorému Microsoft nedovolí prejsť na Windows 11.
-                  Chýba mu TPM 2.0 alebo dostatočne nový procesor. Väčšina takých
-                  strojov skončí v šrote.
-                </p>
-              </div>
-              <div class="story-step" data-step="1">
-                <span class="story-num">02</span>
-                <h2>Prejdeme ho kus po kuse</h2>
-                <p>
-                  Procesor, RAM, úložisko, grafika, porty, teploty pri zaťažení
-                  aj stabilita systému. Až potom vieme, s čím máme do činenia.
-                </p>
-              </div>
-              <div class="story-step" data-step="2">
-                <span class="story-num">03</span>
-                <h2>Čo treba, to doplníme</h2>
-                <p>
-                  Pri kompatibilných kusoch doplníme RAM alebo SSD. Vyčistíme,
-                  vymeníme teplovodivú pastu a znova preskúšame pod záťažou.
-                </p>
-              </div>
-              <div class="story-step" data-step="3">
-                <span class="story-num">04</span>
-                <h2>Pripravený na ďalšie roky</h2>
-                <p>
-                  Windows 11 nainštalovaný a aktivovaný, systém pripravený na prvé
-                  spustenie. So zárukou 24 mesiacov a faktúrou.
-                </p>
-                <a class="btn btn-primary js-shop" data-utm="pribeh" href="#">Pozrieť počítače</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="story-scene">
-            <div id="wrap">
-              <svg id="scene" viewBox="0 0 560 600" role="img"
-                   aria-label="Repasovaný stolný počítač — kontrola, rozložený pohľad na komponenty a hotový stroj pripravený na Windows 11">
-                <defs id="defs"></defs>
-                <g id="stage"></g>
-              </svg>
-            </div>
-
-            <p class="story-hint">Potiahnite myšou a otočte si ho</p>
-          </div>
-
-        </div>
-
-        <div class="story-progress" aria-hidden="true"><span></span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- O NÁS -->
-  <section data-reveal-skupina id="o-nas" class="section">
-    <div class="wrap narrow">
-      <p class="eyebrow">O nás</p>
-      <h2>Váš počítač nie je pokazený</h2>
-      <p>
-        V októbri 2025 skončila podpora Windows 10. Milióny počítačov pritom fungujú
-        úplne dobre — len im Microsoft nedovolí prejsť na Windows 11, pretože im chýba
-        TPM 2.0 alebo dostatočne nový procesor. Zariadenie nie je pokazené. Je len
-        odstrihnuté. A zrazu stojíte pred otázkou, či naozaj musíte vyhodiť funkčný
-        stroj a zaplatiť za nový.
-      </p>
-      <p>
-        Presne pre týchto ľudí Computrax existuje. Zákazník dostane počítač pripravený
-        na Windows 11 — otestovaný, so zárukou 24 mesiacov a faktúrou — za zlomok ceny
-        nového.
-      </p>
-      <p>
-        Má to aj druhú stránku. Väčšina týchto počítačov by skončila v šrote, hoci majú
-        pred sebou ešte roky života. Výroba nového zariadenia stojí násobne viac energie
-        a vody než príprava použitého. Každý repasovaný počítač, ktorý sa vráti do
-        prevádzky, znamená o jeden kus elektroodpadu menej — bez toho, aby ste čokoľvek
-        obetovali na výkone.
-      </p>
-      <p>
-        Nikoho pritom netlačíme do zbytočného nákupu. Ak sa dá súčasný počítač ešte
-        využiť, povieme to. Ak nie, ukážeme, čo za daný rozpočet reálne dostanete. Sme
-        malý slovenský tím — každú objednávku pred odoslaním ešte raz manuálne
-        skontrolujeme.
-      </p>
-    </div>
-  </section>
-
   <!-- PREČO -->
-  <section data-reveal-skupina id="preco" class="section section-alt">
+  <section id="preco" class="section section-alt">
     <div class="wrap">
       <p class="eyebrow">Prečo Computrax</p>
       <h2>Tri dôvody, prečo to dáva zmysel</h2>
@@ -188,8 +92,8 @@
           <h3>Otestované, nie len utreté</h3>
           <p>
             Overujeme procesor, RAM, disk, grafiku, porty a stabilitu systému, teploty
-            pri zaťažení, Windows a ovládače aj fyzický stav. Až potom ide počítač
-            k zákazníkovi.
+            pri zaťažení, Windows a ovládače aj fyzický stav.
+            <a href="kontrola.html">Čo všetko kontrolujeme</a>
           </p>
         </article>
         <article class="card">
@@ -205,77 +109,32 @@
     </div>
   </section>
 
-  <!-- POČÍTAČE -->
-  <section data-reveal-skupina id="pocitace" class="section">
+  <!-- ROZCESTNÍK -->
+  <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Čo u nás nájdete</p>
-      <h2>Dva svety, jeden prístup</h2>
-      <p class="section-lede">
-        Herné aj kancelárske počítače. Oboje repasované, otestované a so zárukou
-        24 mesiacov — líši sa len to, na čo sú stavané.
-      </p>
-
-      <div class="pc-grid" id="pc-grid"></div>
-        </article>
-      </div>
-
-      <p class="note">
-        Konkrétny procesor, RAM, úložisko, grafiku, operačný systém aj stav
-        daného kusu uvádzame pri každom počítači v e-shope. Dostupnosť sa mení
-        podľa aktuálneho skladu.
-      </p>
-    </div>
-  </section>
-
-  <!-- KONTROLA -->
-  <section data-reveal-skupina id="kontrola" class="section section-alt">
-    <div class="wrap">
-      <p class="eyebrow">Kontrola kvality</p>
-      <h2>Čo kontrolujeme pred odoslaním</h2>
-      <p class="section-lede">Každý počítač prejde kontrolou skôr, než opustí sklad. Overujeme:</p>
-      <ul class="checklist">
-        <li>Komponenty — procesor, RAM, disk, grafiku, porty a stabilitu systému</li>
-        <li>Teploty a stabilitu pri zaťažení</li>
-        <li>Softvér — Windows, ovládače, aktualizácie a pripravenosť systému</li>
-        <li>Fyzický stav a čistotu</li>
-        <li>Skladovú dostupnosť konkrétneho kusu</li>
-      </ul>
-      <p class="note">
-        Rozsah kontroly závisí od typu a stavu počítača. Pri každom produkte
-        uvádzame aj poznámku ku konkrétnemu kusu — vrátane toho, kde má
-        kozmetické stopy.
-      </p>
-    </div>
-  </section>
-
-  <!-- FIRMY A ŠKOLY -->
-  <section data-reveal-skupina id="firmy" class="section">
-    <div class="wrap">
-      <p class="eyebrow">Firmy a školy</p>
-      <h2>Potrebujete viac kusov naraz?</h2>
-      <div class="split">
-        <div class="split-text">
-          <p>
-            Pri väčších požiadavkách pripravíme dopyt podľa počtu zariadení, spôsobu
-            použitia, programov a rozpočtu. Podobné konfigurácie závisia od aktuálneho
-            skladu, preto väčšie dopyty potvrdzujeme individuálne.
-          </p>
-          <p>
-            Pre firemných zákazníkov vystavujeme faktúru.
-          </p>
-          <a class="btn btn-primary" href="mailto:info@nanoera.sk?subject=Dopyt%20pre%20firmu%20alebo%20%C5%A1kolu">Napísať dopyt</a>
-        </div>
-        <ul class="checklist split-list">
-          <li>Odporúčanie počítačov podľa použitia a rozpočtu</li>
-          <li>Základné nastavenie a kontrola pred odovzdaním</li>
-          <li>Doplnenie RAM alebo SSD pri kompatibilných kusoch</li>
-          <li>Záruka a podpora k zakúpeným počítačom</li>
-        </ul>
+      <p class="eyebrow">Kam ďalej</p>
+      <h2>Čo vás asi zaujíma</h2>
+      <div class="cards">
+        <a class="card card-odkaz" href="o-nas.html">
+          <h3>Váš počítač nie je pokazený</h3>
+          <p>Prečo Windows 11 odstrihol milióny funkčných počítačov a čo s tým robíme.</p>
+          <span class="pc-link">Prečítať príbeh</span>
+        </a>
+        <a class="card card-odkaz" href="pocitace.html">
+          <h3>Herné a kancelárske PC</h3>
+          <p>Dva svety, jeden prístup — čo u nás nájdete a pre koho je čo vhodné.</p>
+          <span class="pc-link">Pozrieť kategórie</span>
+        </a>
+        <a class="card card-odkaz" href="firmy.html">
+          <h3>Firmy a školy</h3>
+          <p>Viac kusov naraz, faktúra, nastavenie a podpora k zakúpeným počítačom.</p>
+          <span class="pc-link">Dopyt pre firmu</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- CTA BAND -->
+  <!-- CTA -->
   <section class="band">
     <div class="wrap band-inner">
       <div>
@@ -283,27 +142,6 @@
         <p>Herné, kancelárske aj počítače pre firmy a školy — s parametrami a stavom pri každom kuse.</p>
       </div>
       <a class="btn btn-white btn-lg js-shop" data-utm="cta-pas" href="#">Pozrieť počítače</a>
-    </div>
-  </section>
-
-  <!-- KONTAKT -->
-  <section data-reveal-skupina id="kontakt" class="section">
-    <div class="wrap">
-      <p class="eyebrow">Kontakt</p>
-      <h2>Ozvite sa nám</h2>
-      <p class="section-lede">Poradíme, čo za váš rozpočet reálne dostanete — aj keď to nakoniec znamená, že nakupovať netreba.</p>
-      <div class="contact-grid">
-        <a class="contact-card" href="mailto:info@nanoera.sk">
-          <span class="contact-label">E-mail</span>
-          <strong>info@nanoera.sk</strong>
-          <span class="contact-note">Odpovedáme v pracovné dni</span>
-        </a>
-        <div class="contact-card">
-          <span class="contact-label">Pracovné hodiny</span>
-          <strong>Po–Pi 12:00 – 18:00</strong>
-          <span class="contact-note">Mimo týchto hodín píšte e-mailom</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -320,13 +158,13 @@
         <a class="btn btn-primary btn-sm js-shop" data-utm="paticka" href="#">Pozrieť počítače</a>
       </div>
 
-      <nav class="footer-col" aria-label="Sekcie stránky">
-        <h2>Na stránke</h2>
-        <a href="#pribeh">Ako to prebieha</a>
-        <a href="#o-nas">O nás</a>
-        <a href="#preco">Prečo Computrax</a>
-        <a href="#firmy">Firmy a školy</a>
-        <a href="#kontakt">Kontakt</a>
+      <nav class="footer-col" aria-label="Sekcie webu">
+        <h2>Na webe</h2>
+        <a href="index.html">Domov</a>
+        <a href="o-nas.html">O nás</a>
+        <a href="pocitace.html">Počítače</a>
+        <a href="kontrola.html">Kontrola kvality</a>
+        <a href="firmy.html">Firmy a školy</a>
       </nav>
 
       <div class="footer-col">
@@ -353,7 +191,7 @@
         tel. 051/772 15 97 · <a href="mailto:pr@soi.sk">pr@soi.sk</a>
       </p>
       <p>
-        Táto stránka je informačná — nepredáva tovar, nezbiera osobné údaje
+        Tento web je informačný — nepredáva tovar, nezbiera osobné údaje
         a nepoužíva cookies ani analytické nástroje. Nákup, obchodné podmienky
         a reklamačný poriadok nájdete v <a class="js-shop" data-utm="paticka-podmienky" href="#">e-shope</a>.
       </p>
@@ -366,9 +204,7 @@
   <a class="btn btn-primary js-shop" data-utm="sticky-mobil" href="#">Pozrieť počítače</a>
 </div>
 
-<script src="produkty.js?v=5"></script>
-<script src="app.js?v=5"></script>
-<script src="pc-scene.js?v=5"></script>
-<script src="story.js?v=5"></script>
+<script src="app.js?v=10"></script>
+
 </body>
 </html>
