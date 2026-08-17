@@ -71,7 +71,7 @@ p { margin: 0 0 1.25em; }
   letter-spacing: .14em;
   font-size: .78rem;
   font-weight: 700;
-  color: var(--blue);
+  color: var(--blue-deep);
   margin-bottom: .6em;
 }
 
@@ -183,6 +183,14 @@ p { margin: 0 0 1.25em; }
 
 @media (min-width: 560px) and (max-width: 859px) {
   .header-inner > .btn { display: inline-flex; }
+}
+
+/* ---------- Zameranie klávesnicou ---------- */
+
+:focus-visible {
+  outline: 3px solid var(--blue-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 /* ---------- Buttons ---------- */
@@ -463,6 +471,9 @@ p { margin: 0 0 1.25em; }
 
 .section p { color: var(--ink-soft); }
 .section h2 { color: var(--ink); }
+
+/* .eyebrow je <p>, takže ho .section p prebíjalo — vrátime mu farbu */
+.section .eyebrow { color: var(--blue-deep); }
 
 .section-lede { max-width: 36rem; margin-bottom: 34px; }
 
@@ -811,8 +822,8 @@ svg#scene {
   color: #fff;
 }
 
-.pc-stav.je-repas { background: var(--blue); }
-.pc-stav.je-novy  { background: #16a34a; }
+.pc-stav.je-repas { background: var(--blue-deep); }
+.pc-stav.je-novy  { background: #15803d; }
 
 .pc-body {
   padding: 24px 24px 26px;
@@ -1021,6 +1032,12 @@ svg#scene {
 }
 
 .footer-col a:hover { color: #fff; text-decoration: underline; }
+
+/* na dotykových displejoch potrebujú odkazy väčšiu plochu */
+@media (max-width: 759px) {
+  .footer-col a { padding: 9px 0; margin-bottom: 0; }
+  .brand { padding: 9px 0; }
+}
 .footer-col p { margin: 0 0 10px; }
 
 .footer-legal {
@@ -1031,4 +1048,4 @@ svg#scene {
 
 .footer-legal p { margin: 0 0 10px; color: #8494ab; }
 .footer-legal a { color: #cfe6ff; }
-.footer-legal .copy { color: #64748b; margin: 0; }
+.footer-legal .copy { color: #7d8ba1; margin: 0; }

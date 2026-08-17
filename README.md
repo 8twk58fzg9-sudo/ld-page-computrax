@@ -1,6 +1,6 @@
 # Computrax — landing page
 
-Statická jednostránková promo stránka pre Computrax (NANOERA s.r.o.).
+Statický web pre Computrax (NANOERA s.r.o.) — šesť stránok.
 Bez build kroku — čistý HTML/CSS/JS.
 
 ## Súbory
