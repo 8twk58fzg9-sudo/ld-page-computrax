@@ -107,8 +107,14 @@ zvážiť generovanie.
 
 ---
 
-## 8. Doplniť sociálne siete
+## 8. Doplniť ďalšiu sociálnu sieť
 
-V pätičke pre ne zatiaľ nie je miesto — treba ho vytvoriť. Podľa Facebook Pixelu
-na protiplesniam.sk firemná FB stránka takmer isto existuje, len na ňu nikde
-nevedie odkaz.
+Instagram a TikTok sú v pätičke a v štruktúrovaných dátach (`sameAs`).
+Ďalšiu sieť treba pridať na dve miesta v každom zo šiestich súborov:
+zoznam `<ul class="socialne">` a pole `sameAs` v `application/ld+json`.
+
+## 9. Podklady majú viac verzií — pozor na to
+
+Súbor `computrax-podklady.txt` existuje vo viacerých kópiách v Downloads
+a na Ploche a **líšia sa obsahom**. Najnovšia je tá na Ploche (13.08.2026),
+hoci tá v Downloads je väčšia a pôsobí úplnejšie. Vždy over dátum zmeny.
